@@ -14,7 +14,8 @@ import { RegisterComponent } from './login/register.component';
 
 
 //temporal
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -22,13 +23,15 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    
+
   ],
   imports: [
     BrowserModule,
     PagesModule,//me surgio un error y se soluciona poniendo el pagesmodulo primero que el routing
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
