@@ -35,7 +35,7 @@ export class ProfileComponent implements OnInit {
       .subscribe(resp => console.log(resp));
   }
 
-  seleccionImagen(archivo) {
+  seleccionImagen(archivo: File) {
 
     if (!archivo) {
       this.imagenSubir = null;
