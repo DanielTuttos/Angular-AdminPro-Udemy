@@ -9,19 +9,23 @@ import { Graficas1Component } from './graficas1/graficas1.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
-import { LoginGuardGuard } from '../services/guards/login-guard.guard';
 import { ProfileComponent } from './profile/profile.component';
+
+// guards
+import { LoginGuardGuard } from '../services/guards/login-guard.guard';
+import { AdminGuard } from '../services/guards/admin.guard';
 
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { HospitalesComponent } from './hospitales/hospitales.component';
 import { MedicosComponent } from './medicos/medicos.component';
 import { MedicoComponent } from './medicos/medico.component';
+import { BusquedaComponent } from './busqueda/busqueda.component';
 
 const routes: Routes = [
     {
         path: '',
         component: PagesComponent,
-        canActivate:[LoginGuardGuard],
+        canActivate: [LoginGuardGuard],
         children: [
             { path: 'dashboard', component: DashboardComponent, data: { titulo: 'Dashboard' } },
             { path: 'progress', component: ProgressComponent, data: { titulo: 'Progress' } },
@@ -30,9 +34,15 @@ const routes: Routes = [
             { path: 'rxjs', component: RxjsComponent, data: { titulo: 'RXJS' } },
             { path: 'account-settings', component: AccountSettingsComponent, data: { titulo: 'Ajustes del Tema' } },
             { path: 'perfil', component: ProfileComponent, data: { titulo: 'Perfil de Usuario' } },
+            { path: 'busqueda/:termino', component: BusquedaComponent, data: { titulo: 'Buscador' } },
 
             //Mantenimientos
-            { path: 'usuarios', component: UsuariosComponent, data: { titulo: 'Mantenimiento de Usuarios' } },
+            {
+                path: 'usuarios',
+                component: UsuariosComponent,
+                canActivate: [AdminGuard],
+                data: { titulo: 'Mantenimiento de Usuarios' }
+            },
             { path: 'hospitales', component: HospitalesComponent, data: { titulo: 'Mantenimiento de Hospitales' } },
             { path: 'medicos', component: MedicosComponent, data: { titulo: 'Mantenimiento de Medicos' } },
             { path: 'medico/:id', component: MedicoComponent, data: { titulo: 'Actualizar Medicos' } },
