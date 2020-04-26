@@ -15,7 +15,7 @@ export class ModalUploadService {
 
 
   constructor() {
-    console.log('Modal Upload Service Listo')
+    // console.log('Modal Upload Service Listo')
 
   }
 
